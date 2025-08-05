@@ -1,7 +1,9 @@
 #!/bin/bash
 # ===============================================
-# Script: siteApp_xxx.sh
-# Purpose: Build EPICS IOC based on current directory name (APPNAME)
+# Script  : siteApp_xxx.sh
+# Purpose : Build EPICS IOC based on current directory name (APPNAME)
+# Author  : Seo Min Ho
+# email   : mhdev@postech.ac.kr
 # ===============================================
 # EPICS_HOST_ARCH : linux-x86_64
 # EPICS_PATH : /usr/local/epics/EPICS_R7.0
@@ -14,21 +16,14 @@
 # ========== Global Variables ==========
 START_TIME=$(date +%s)
 
-# 현재 실행 중인 스크립트 파일 이름에서 디렉토리 및 확장자 제거
-#script_filename="$(basename "$0")"
-#script_basename="${script_filename%.*}"
-#APPNAME="${script_basename#siteApp_}"
-
 APPNAME="USB1608G_2AO"
 TOPDIR="${EPICS_PATH}/siteApp/${APPNAME}"
-
 
 # 전역 배열 선언 : 배열에 파일 경로를 추가
 declare -a EDIT_FILES=()
 
 
 # ========== Logging ==========
-#LOG_DIR="${GIT_REPO_DEV_LOG:-/tmp}"
 LOG_DIR="/root/log"
 LOG_FILE="$LOG_DIR/siteApp_${APPNAME}_$(date +'%m%d_%H').log"
 
@@ -51,7 +46,6 @@ log_block() {
 }
 
 log() {
-    #echo -e "[`date +'%F %T'`] $1" | tee -a "$LOG_FILE"
     echo -e "$1"
 }
 
@@ -85,7 +79,6 @@ dir_tree() {
     local target_dir="$1"
     echo "📂 Directory Tree"
     tree "$target_dir"
-    #tree -L 3 "$target_dir" | cat
 }
 
 dir_file() {
@@ -230,25 +223,6 @@ print_summary() {
 
 
 
-if false; then
-""
-# 1단계: configure/RELEASE 수정
-# 2단계: xxxApp/src/Makefile과 소스 파일 추가 (.stt, .st, .cpp, .c 등)
-# 3단계: xxxApp/Db/Makefile과 DB 또는 template 파일 추가
-# 4단계: iocBoot/iocApp/st.cmd 수정 및 substitutions 포함 시 템플릿 등록
-# 5단계: $(TOP)에서 make 실행
-# 6단계: iocBoot/iocApp/st.cmd 실행
-
-
-""
-# \ (역슬래시): 각 줄의 끝에 \를 붙이면, 쉘은 다음 줄이 현재 명령의 연속임을 인식
-# >> file	🔁 기존 파일 내용 유지 + 맨 아래에 추가
-#  > file	⚠️ 기존 내용 모두 삭제 후 새로 작성 (덮어씀)
-
-""
-# << 'EOF'	따옴표 사용 시 내부 변수($APPNAME, $(...))가 확장되지 않음
-# << EOF	따옴표 없이 사용 시 내부 변수 확장됨
-fi
 
 
 
@@ -256,13 +230,6 @@ fi
 
 
 
-
-
-
-
-
-# https://wepplication.github.io/tools/asciiArtGen/
-# font : cascii
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -491,7 +458,7 @@ step16_download_files_from_gitrepo() {
     local COPYDIR
 
     # CPP
-    COPYDIR="/root/git_repo/EPICS-siteApp/siteApp_USB1608G-2AO"
+    COPYDIR="/root/git_repo/DEV-202504/B02_siteApp/siteApp_USB1608G-2AO"
     copy2paste_file "${IOCB_APP_DB}" ${COPYDIR}/threshold_logic.template
 
     cp ${COPYDIR}/USB1608G_2AO_my.substitutions "${IOCB_APP_DB}/${APPNAME}.substitutions"
@@ -500,7 +467,7 @@ step16_download_files_from_gitrepo() {
     cp ${COPYDIR}/USB1608G_2AO_my.adl "${IOCB_APP_OP}/${APPNAME}.adl"
 
     # TEST scripts
-    COPYDIR="/root/git_repo/EPICS-siteApp/siteApp_USB1608G-2AO"
+    COPYDIR="/root/git_repo/DEV-202504/B02_siteApp/siteApp_USB1608G-2AO"
     copy2paste_file "${IOCB_IOCBOOT}" ${COPYDIR}/catest_USB1608G_2AO.sh
     copy2paste_file "${IOCB_IOCBOOT}" ${COPYDIR}/medm_USB1608G_2AO.sh
 
@@ -598,9 +565,6 @@ EOF
 # ========== Update Makefile ==========
 step30_update_src_makefile() {
     log_block "${FUNCNAME[0]} : Updating src/Makefile"
-    # xxxApp/src/Makefile 구성과 소스 파일 추가 (.stt, .st, .cpp, .c 등)
-    # 애플리케이션을 빌드(컴파일 및 링크)할 때
-    #  - 어떤 라이브러리와 데이터베이스 정의(DBD) 파일을 포함할지 명시
 
     local EFILE="${IOCB_APP_SRC}/Makefile"
     local MLINE=""
@@ -729,8 +693,7 @@ EOF
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 step40_update_db_makefile() {
-    log_block "${FUNCNAME[0]} : Updating app/Db/Makefile"    #
-    # 데이터베이스 파일(.db, .template, .substitutions)을 자동으로 감지하고 db 폴더에 설치
+    log_block "${FUNCNAME[0]} : Updating app/Db/Makefile"
 
     local EFILE="${IOCB_APP_DB}/Makefile"
     local MLINE=""
@@ -948,12 +911,10 @@ EOF
 step70_build_ioc() {
     log_block "${FUNCNAME[0]} : Building IOC for $APPNAME"
 
-    # 임시 파일로 전체 make 로그 저장
     local BUILD_LOG
     BUILD_LOG=$(mktemp)
     local ERROR_PATTERNS='(fatal|unknown|undefined|no such|No rule|multiple definition|error:|Error [0-9])'
 
-    # make 실행 로그 저장
     cd "$TOPDIR" || abort_on_error "Failed to cd into $TOPDIR"
     make -j >> "$BUILD_LOG" 2>&1 || abort_on_error "make failed"
 
@@ -991,7 +952,6 @@ step70_build_ioc() {
 # ==========  Update st.cmd ==========
 step80_Update_st_cmd() {
     log_block "${FUNCNAME[0]} : Update st.cmd"
-    #  실행파일 : #!../../bin/linux-x86_64/USB1608G
 
     local EFILE="${IOCB_IOCBOOT}/st.cmd"
     local ADD_LINE=""
@@ -1067,9 +1027,9 @@ main() {
         printf '\n%.0s' {1..3}
         step02_clean_existing_app_folder
         printf '\n%.0s' {1..3}
-        step03_create_app_folder    # APPNAME 설정
+        step03_create_app_folder
         printf '\n%.0s' {1..3}
-        step04_define_paths         # IOC 경로 전역 정의
+        step04_define_paths
         printf '\n%.0s' {1..6}
         # --------------------------------------
         # IOCB_APP
