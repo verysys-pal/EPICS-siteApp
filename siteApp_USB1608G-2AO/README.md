@@ -1,21 +1,73 @@
-siteApp_USB1608G_2AO.sh 파일은 EPICS 기반의 IOC 애플리케이션 자동 생성 스크립트입니다.
-이 스크립트는 makeBaseApp.pl을 기반으로 특정 디바이스(USB1608G_2AO)에 대한 전체 IOC 환경을 설정하고 빌드하며, 필요한 파일들을 외부 모듈에서 자동 복사하고 RELEASE, Makefile, st.cmd 등의 핵심 파일을 자동 수정합니다.
+# 🧰 EPICS IOC 자동 생성 스크립트: `siteApp_USB1608G_2AO.sh`
+
+본 스크립트는 EPICS 환경에서 **USB1608G_2AO 디바이스용 IOC 애플리케이션을 자동으로 생성, 구성, 빌드, 실행**하는 목적으로 작성되었습니다.
+
 ---
-## 1. 📦 기본 설정
-APPNAME="USB1608G_2AO"
-EPICS 환경변수 사용: EPICS_PATH, EPICS_BASE, EPICS_SYNAPPS
-로그는 /root/log/siteApp_USB1608G_2AO_*.log에 기록됨
 
-## 2. 🧱 IOC 구조 생성 단계별 실행
-단계	설명
-step01~04	환경 변수 체크, 기존 앱 폴더 제거, 새 폴더 생성 및 경로 정의
-step10~12	makeBaseApp.pl을 이용해 IOC 기본 구조 생성 및 필수 파일 검사
-step15~16	measComp-R4-2 모듈 및 git repo에서 템플릿, .cpp, .adl, .req 등 자동 복사
-step20	    configure/RELEASE 오버라이드 설정
-step30~31	src/Makefile, Main.cpp 등 소스 설정 자동 구성
-step40~52	Db/Makefile, user.db, .proto, .substitutions 파일 생성
-step60~61	autosave 설정 및 auto_settings.req 구성
-step70	    make -j로 빌드 및 로그 오류 체크
-step80	    st.cmd 파일 완전 자동화 구성 (envSet, dbLoad, iocInit 등)
-step90	    IOC 자동 실행
+## 📦 주요 정보
 
+| 항목 | 내용 |
+|------|------|
+| **스크립트명** | `siteApp_USB1608G_2AO.sh` |
+| **타겟 디바이스** | USB1608G_2AO (Measurement Computing) |
+| **EPICS 버전** | EPICS R7.0 |
+| **지원 모듈** | measComp, asyn, autosave, calc, sscan 등 |
+| **로그 경로** | `/root/log/siteApp_USB1608G_2AO_*.log` |
+
+---
+
+## ⚙️ 수행 순서 요약
+
+1. **환경 변수 검사**
+2. **기존 앱 폴더 삭제 및 재생성**
+3. **makeBaseApp 기반 IOC 생성**
+4. **필수 파일 및 디렉토리 자동 구성**
+5. **measComp 및 git repo에서 템플릿, 소스, 화면 복사**
+6. **RELEASE / Makefile / st.cmd 자동 삽입 및 수정**
+7. **autosave 설정 및 substitutions 등록**
+8. **IOC 빌드 및 오류 체크**
+9. **IOC 자동 실행**
+
+
+---
+
+## 📁 주요 파일 자동 수정
+
+| 파일 경로 | 설명 |
+|-----------|------|
+| `configure/RELEASE` | 외부 모듈 경로 등록 (`measComp`, `asyn`, 등) |
+| `src/Makefile` | .cpp, .st 파일 빌드 설정 |
+| `Db/Makefile` | *.template, *.substitutions 자동 탐색 및 설치 |
+| `st.cmd` | EPICS 실행 스크립트 전체 구성 |
+| `save_restore.cmd` | autosave 설정 구성 |
+| `auto_settings.req` | 복구 설정 등록 |
+
+---
+
+## 🔄 복사되는 주요 파일
+
+- **From `measComp-R4-2`**
+  - 템플릿, .cpp, .dbd, .st, ADL 화면 등
+
+- **From Local Git Repo**
+  - `USB1608G_2AO_my.substitutions`, `threshold_logic.template`, `catest_USB1608G_2AO.sh`, `USB1608G_2AO_my.adl` 등
+
+---
+
+## ✅ 실행 방법
+
+```bash
+# 실행 전 환경 변수 설정 필요
+export EPICS_PATH=/usr/local/epics/EPICS_R7.0
+export EPICS_SYNAPPS=/usr/local/epics/EPICS_R7.0/modules/synApps/support
+
+# 실행
+chmod +x siteApp_USB1608G_2AO.sh
+./siteApp_USB1608G_2AO.sh
+
+---
+
+## 📝 주의사항
+measComp-R4-2 및 Git repo의 경로는 사전에 존재해야 하며, 필요한 파일이 없을 경우 복사 오류 발생 가능
+user.db, user.proto, user.substitutions, Main.cpp 등은 생성만 하고 내용은 비워두므로 수동 작성 필요
+EPICS_HOST_ARCH=linux-x86_64 기준으로 작성됨
