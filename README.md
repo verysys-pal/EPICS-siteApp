@@ -11,13 +11,13 @@ EPICS_EXTENSIONS  : /usr/local/epics/EPICS_R7.0/extensions
 EPICS_SYNAPPS     : /usr/local/epics/EPICS_R7.0/modules/synApps/support
 
 /usr/local/epics
-├── base -> /usr/local/epics/EPICS_R7.0/base
-└── EPICS_R7.0
-    ├── base
-    ├── downloads
-    ├── extensions
-    ├── modules
-    ├── siteApp
-    └── siteLib
+            ├── base -> /usr/local/epics/EPICS_R7.0/base
+            └── EPICS_R7.0
+                ├── base
+                ├── downloads
+                ├── extensions
+                ├── modules
+                ├── siteApp
+                └── siteLib
 
 
