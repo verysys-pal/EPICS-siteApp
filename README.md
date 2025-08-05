@@ -10,7 +10,6 @@ EPICS_BASE        : /usr/local/epics/EPICS_R7.0/base
 EPICS_EXTENSIONS  : /usr/local/epics/EPICS_R7.0/extensions
 EPICS_SYNAPPS     : /usr/local/epics/EPICS_R7.0/modules/synApps/support
 
-```bash
 /usr/local/epics
 ├── base -> /usr/local/epics/EPICS_R7.0/base
 └── EPICS_R7.0
@@ -20,3 +19,5 @@ EPICS_SYNAPPS     : /usr/local/epics/EPICS_R7.0/modules/synApps/support
     ├── modules
     ├── siteApp
     └── siteLib
+
+
