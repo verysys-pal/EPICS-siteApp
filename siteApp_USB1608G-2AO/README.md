@@ -18,15 +18,15 @@
 
 ## ⚙️ 수행 순서 요약
 
-1. **환경 변수 검사**
-2. **기존 앱 폴더 삭제 및 재생성**
-3. **makeBaseApp 기반 IOC 생성**
-4. **필수 파일 및 디렉토리 자동 구성**
-5. **measComp 및 git repo에서 템플릿, 소스, 화면 복사**
-6. **RELEASE / Makefile / st.cmd 자동 삽입 및 수정**
-7. **autosave 설정 및 substitutions 등록**
-8. **IOC 빌드 및 오류 체크**
-9. **IOC 자동 실행**
+1. 환경 변수 검사
+2. 기존 앱 폴더 삭제 및 재생성
+3. makeBaseApp 기반 IOC 생성
+4. 필수 파일 및 디렉토리 자동 구성
+5. measComp 및 git repo에서 템플릿, 소스, 화면 복사
+6. RELEASE / Makefile / st.cmd 자동 삽입 및 수정
+7. autosave 설정 및 substitutions 등록
+8. IOC 빌드 및 오류 체크
+9. IOC 자동 실행
 
 
 ---
@@ -50,7 +50,12 @@
   - 템플릿, .cpp, .dbd, .st, ADL 화면 등
 
 - **From Local Git Repo**
-  - `USB1608G_2AO_my.substitutions`, `threshold_logic.template`, `catest_USB1608G_2AO.sh`, `USB1608G_2AO_my.adl` 등
+  - `USB1608G_2AO_my.substitutions`
+  - `threshold_logic.template`
+  - `USB1608G_2AO_my.adl`
+  - `medm_USB1608G_2AO.sh`
+  - `catest_USB1608G_2AO.sh`
+  
 
 ---
 
@@ -64,6 +69,7 @@ export EPICS_SYNAPPS=/usr/local/epics/EPICS_R7.0/modules/synApps/support
 # 실행
 chmod +x siteApp_USB1608G_2AO.sh
 ./siteApp_USB1608G_2AO.sh
+```
 
 ---
 
