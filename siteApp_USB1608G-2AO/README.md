@@ -87,7 +87,7 @@ export EPICS_SYNAPPS=${EPICS_PATH}/modules/synApps/support
 export EPICS_HOST_ARCH=$(${EPICS_BASE}/startup/EpicsHostArch)
 
 # 실행
-cd /usr/local/epics/EPICS_R7.0/siteApp/USB1608G_2AO/iocBoot/iocUSB1608G_2AO
+cd /root/git_repo/EPICS-siteApp/siteApp_USB1608G-2AO
 chmod +x siteApp_USB1608G_2AO.sh
 ./siteApp_USB1608G_2AO.sh
 ```
