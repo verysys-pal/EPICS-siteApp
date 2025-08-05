@@ -266,14 +266,14 @@ fi
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-            ##                ##       ##    
-                                       ##    
-           ###     #####     ###      #####  
-            ##     ##  ##     ##       ##    
-            ##     ##  ##     ##       ##    
-            ##     ##  ##     ##       ## ## 
-           ####    ##  ##    ####       ###  
-                                             
+            ##                ##       ##
+                                       ##
+           ###     #####     ###      #####
+            ##     ##  ##     ##       ##
+            ##     ##  ##     ##       ##
+            ##     ##  ##     ##       ## ##
+           ####    ##  ##    ####       ###
+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -321,7 +321,7 @@ step03_create_app_folder() {
 step04_define_paths() {
     log_block "${FUNCNAME[0]} : Define and export IOC directory paths"
 
-    # IOC 설치 경로 전역 사용 가능하도록 설정    
+    # IOC 설치 경로 전역 사용 가능하도록 설정
     export IOCB_CONFIGURE="${TOPDIR}/configure"
     export IOCB_APP="${TOPDIR}/${APPNAME}App"
     export IOCB_APP_SRC="${IOCB_APP}/src"
@@ -358,13 +358,13 @@ step04_define_paths() {
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-          ########    #####   ######  
-          ## ## ##   ##   ##   ##  ## 
-             ##     ##   ##   ##  ## 
-             ##     ##   ##   #####  
-             ##     ##   ##   ##     
-             ##     ##   ##   ##     
-            ####     #####   ####    
+          ########    #####   ######
+          ## ## ##   ##   ##   ##  ##
+             ##     ##   ##   ##  ##
+             ##     ##   ##   #####
+             ##     ##   ##   ##
+             ##     ##   ##   ##
+            ####     #####   ####
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -389,7 +389,7 @@ step10_generate_ioc_app() {
 step11_validate_ioc_structure() {
     log_block "${FUNCNAME[0]} : Validating IOC structure..."
 
-    local required_paths=(    
+    local required_paths=(
         "${IOCB_APP}/op"
         "${IOCB_IOCBOOT}/autosave"
     )
@@ -422,7 +422,7 @@ step12_validate_ioc_structure_and_files() {
     "${IOCB_APP}/src/Makefile"
     "${IOCB_APP}/src/${APPNAME}Main.cpp"
     "${IOCB_APP}/Db/Makefile"
-    
+
     "${TOPDIR}/iocBoot/Makefile"
     "${TOPDIR}/iocBoot/ioc${APPNAME}/Makefile"
     "${TOPDIR}/iocBoot/ioc${APPNAME}/st.cmd"
@@ -453,14 +453,14 @@ step12_validate_ioc_structure_and_files() {
 step15_download_files_from_measComp() {
     log_block "${FUNCNAME[0]} : measComp-R4-2 모듈에서 필요한 파일 복사 중..."
 
-    local COPYDIR  
+    local COPYDIR
     local MEASCOMP=${EPICS_SYNAPPS}/measComp-R4-2
 
     # DB 템플릿 및 substitutions 복사
     COPYDIR="${MEASCOMP}/measCompApp/Db"
-    cp ${COPYDIR}/*.template "${IOCB_APP_DB}"        
-    cp ${COPYDIR}/*.req "${IOCB_APP_DB}"        
-    cp ${COPYDIR}/USB1608G_2AO_settings.req "${IOCB_APP_DB}"    
+    cp ${COPYDIR}/*.template "${IOCB_APP_DB}"
+    cp ${COPYDIR}/*.req "${IOCB_APP_DB}"
+    cp ${COPYDIR}/USB1608G_2AO_settings.req "${IOCB_APP_DB}"
 
     # CPP
     COPYDIR="${MEASCOMP}/measCompApp/src"
@@ -485,13 +485,13 @@ step15_download_files_from_measComp() {
 }
 
 
-step16_download_files_from_gitrepo() {  
+step16_download_files_from_gitrepo() {
     log_block "${FUNCNAME[0]} : git-repo 모듈에서 필요한 파일 복사 중..."
 
     local COPYDIR
 
     # CPP
-    COPYDIR="/root/git_repo/DEV-202504/B02_siteApp/siteApp_USB1608G-2AO"
+    COPYDIR="/root/git_repo/EPICS-siteApp/siteApp_USB1608G-2AO"
     copy2paste_file "${IOCB_APP_DB}" ${COPYDIR}/threshold_logic.template
 
     cp ${COPYDIR}/USB1608G_2AO_my.substitutions "${IOCB_APP_DB}/${APPNAME}.substitutions"
@@ -500,10 +500,10 @@ step16_download_files_from_gitrepo() {
     cp ${COPYDIR}/USB1608G_2AO_my.adl "${IOCB_APP_OP}/${APPNAME}.adl"
 
     # TEST scripts
-    COPYDIR="/root/git_repo/DEV-202504/B02_siteApp/siteApp_USB1608G-2AO"
+    COPYDIR="/root/git_repo/EPICS-siteApp/siteApp_USB1608G-2AO"
     copy2paste_file "${IOCB_IOCBOOT}" ${COPYDIR}/catest_USB1608G_2AO.sh
     copy2paste_file "${IOCB_IOCBOOT}" ${COPYDIR}/medm_USB1608G_2AO.sh
-    
+
     echo " - git_repo 관련 파일 복사 완료"
 }
 
@@ -599,7 +599,7 @@ EOF
 step30_update_src_makefile() {
     log_block "${FUNCNAME[0]} : Updating src/Makefile"
     # xxxApp/src/Makefile 구성과 소스 파일 추가 (.stt, .st, .cpp, .c 등)
-    # 애플리케이션을 빌드(컴파일 및 링크)할 때 
+    # 애플리케이션을 빌드(컴파일 및 링크)할 때
     #  - 어떤 라이브러리와 데이터베이스 정의(DBD) 파일을 포함할지 명시
 
     local EFILE="${IOCB_APP_SRC}/Makefile"
@@ -729,7 +729,7 @@ EOF
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 step40_update_db_makefile() {
-    log_block "${FUNCNAME[0]} : Updating app/Db/Makefile"    # 
+    log_block "${FUNCNAME[0]} : Updating app/Db/Makefile"    #
     # 데이터베이스 파일(.db, .template, .substitutions)을 자동으로 감지하고 db 폴더에 설치
 
     local EFILE="${IOCB_APP_DB}/Makefile"
@@ -849,14 +849,14 @@ EOF
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-            ##                       ###                          ##    
-                                      ##                          ##    
-           ###      ####     ####     ##       ####     ####     #####  
-            ##     ##  ##   ##  ##    #####   ##  ##   ##  ##     ##    
-            ##     ##  ##   ##        ##  ##  ##  ##   ##  ##     ##    
-            ##     ##  ##   ##  ##    ##  ##  ##  ##   ##  ##     ## ## 
-           ####     ####     ####    ######    ####     ####       ###  
-                                                                        
+            ##                       ###                          ##
+                                      ##                          ##
+           ###      ####     ####     ##       ####     ####     #####
+            ##     ##  ##   ##  ##    #####   ##  ##   ##  ##     ##
+            ##     ##  ##   ##        ##  ##  ##  ##   ##  ##     ##
+            ##     ##  ##   ##  ##    ##  ##  ##  ##   ##  ##     ## ##
+           ####     ####     ####    ######    ####     ####       ###
+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -1082,7 +1082,7 @@ main() {
         step15_download_files_from_measComp
         printf '\n%.0s' {1..3}
         step16_download_files_from_gitrepo
-        printf '\n%.0s' {1..3}  
+        printf '\n%.0s' {1..3}
         dir_tree $TOPDIR
         printf '\n%.0s' {1..3}
          #--------------------------------------
@@ -1108,14 +1108,14 @@ main() {
         #--------------------------------------
         # IOCB_IOCBOOT
         step60_save_restore_cmd
-        printf '\n%.0s' {1..3}  
+        printf '\n%.0s' {1..3}
         step61_auto_settings
         printf '\n%.0s' {1..3}
         #--------------------------------------
         # MAKE
         step70_build_ioc
         printf '\n%.0s' {1..3}
-        dir_tree $TOPDIR        
+        dir_tree $TOPDIR
         #--------------------------------------
         # ST.CMD
         printf '\n%.0s' {1..3}
