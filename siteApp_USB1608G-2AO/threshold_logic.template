@@ -1,0 +1,24 @@
+# Template for a single channel threshold logic
+# ============================================
+# Macros to be substituted:
+#   P       - PV Prefix (e.g., USB1608G_2AO:)
+#   AI_CHAN - Analog Input channel number (e.g., 1)
+#   BO_CHAN - Binary Output channel number (e.g., 1)
+#   THRESH  - Threshold value (e.g., 5.0)
+
+# Manual/Auto mode selection for this specific logic link
+record(bo, "$(P)Threshold:Ai$(AI_CHAN)-Bo$(BO_CHAN):AutoMode") {
+    field(DESC, "Auto-control Bo$(BO_CHAN) from Ai$(AI_CHAN)")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+    field(VAL,  "1")  # Default to Auto mode
+}
+
+record(calcout, "$(P)Threshold:Ai$(AI_CHAN)-Bo$(BO_CHAN):Calc") {
+    field(DESC, "If Auto & Ai$(AI_CHAN)>=$(THRESH), set Bo$(BO_CHAN)")
+    field(INPA, "$(P)Ai$(AI_CHAN) CP")
+    field(INPB, "$(P)Threshold:Ai$(AI_CHAN)-Bo$(BO_CHAN):AutoMode CP")
+    field(INPC, "$(P)Bo$(BO_CHAN)")
+    field(CALC, "B?(A>=$(THRESH)):C")
+    field(OUT,  "$(P)Bo$(BO_CHAN) PP")
+}
