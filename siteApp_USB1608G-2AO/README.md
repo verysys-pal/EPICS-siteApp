@@ -6,6 +6,21 @@
 
 ---
 
+### 🛠️ 설치 방법
+
+1. `/root/git_repo/` 디렉토리를 생성합니다.
+
+```bash
+mkdir -p /root/git_repo/
+```
+2. GitHub 저장소 클론
+``` bash
+cd /root/git_repo/
+git clone https://github.com/verysys-pal/EPICS-siteApp.git
+```
+
+---
+
 ### 📦 주요 정보
 
 | 항목 | 내용 |
