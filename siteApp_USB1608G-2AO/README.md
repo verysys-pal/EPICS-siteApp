@@ -2,22 +2,7 @@
 
 ### `siteApp_USB1608G_2AO.sh`
 
-본 스크립트는 EPICS 환경에서 USB1608G_2AO 디바이스용 IOC 애플리케이션을 자동으로 생성, 구성, 빌드, 실행하는 목적으로 작성되었습니다.
-
----
-
-### 🛠️ 설치 방법
-
-1. `/root/git_repo/` 디렉토리를 생성합니다.
-
-```bash
-mkdir -p /root/git_repo/
-```
-2. GitHub 저장소 클론
-``` bash
-cd /root/git_repo/
-git clone https://github.com/verysys-pal/EPICS-siteApp.git
-```
+본 스크립트는 EPICS 환경에서 USB1608G_2AO 디바이스용 IOC 애플리케이션을 자동으로 생성, 구성, 빌드, 실행하는 목적으로 작성되었다.
 
 ---
 
@@ -73,6 +58,21 @@ git clone https://github.com/verysys-pal/EPICS-siteApp.git
   - `medm_USB1608G_2AO.sh` : USB1608G_2AO.adl 실행 스크립트
   - `catest_USB1608G_2AO.sh` : Ao1 의 출력전압값을 sinewave로 출력
   
+
+---
+
+### 🛠️ 설치 방법
+
+1. `/root/git_repo/` 디렉토리를 생성.
+
+```bash
+mkdir -p /root/git_repo/
+```
+2. GitHub 저장소 클론
+``` bash
+cd /root/git_repo/
+git clone https://github.com/verysys-pal/EPICS-siteApp.git
+```
 
 ---
 
