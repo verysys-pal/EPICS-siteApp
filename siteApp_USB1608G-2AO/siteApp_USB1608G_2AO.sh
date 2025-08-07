@@ -930,6 +930,42 @@ step70_build_ioc() {
 
 
 
+step71_cleanup_items() {
+    log_block "${FUNCNAME[0]} : Cleaning up"
+    
+    local description="Cleaning up setting files for other models"
+    echo "- Searching for: $description"
+
+    cd "$TOPDIR"
+
+    # find 명령을 실행하고 결과를 배열에 저장
+    # -print0과 read -d ''를 사용하여 공백이 포함된 파일 이름 처리
+    local items_to_delete=()
+    while IFS= read -r -d $'\0'; do
+        items_to_delete+=("$REPLY")
+    done < <(
+        find . -depth \
+            -type f -name "*_settings.req" \
+            -not -name "measComp*" \
+            -not -name "USB1608G_2AO_settings.req" \
+            -not -name "auto_settings.req" \
+            -print0 2>/dev/null
+    )
+
+    if [ ${#items_to_delete[@]} -eq 0 ]; then
+        echo " - No items to delete."
+        echo ""
+        return
+    fi
+
+    for item in "${items_to_delete[@]}"; do
+        if [ -e "$item" ]; then
+            echo "  - Deleting: $item"
+            rm -rf "$item"
+        fi
+    done
+}
+
 
 
 
@@ -1074,6 +1110,8 @@ main() {
         #--------------------------------------
         # MAKE
         step70_build_ioc
+        printf '\n%.0s' {1..3}
+        step71_cleanup_items
         printf '\n%.0s' {1..3}
         dir_tree $TOPDIR
         #--------------------------------------
