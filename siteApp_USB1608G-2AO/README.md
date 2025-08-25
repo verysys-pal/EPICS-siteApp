@@ -66,16 +66,13 @@ USB1608G_2AO/                           # 📁 프로젝트 루트 디렉토리
 │   ├── 📁 src/                         # 💻 C/C++ 소스 코드
 │   │   ├── 📄 Makefile                 # 소스 빌드 설정
 │   │   ├── 📄 USB1608G_2AOMain.cpp     # IOC 메인 진입점
-│   │   ├── 📄 ThresholdLogicController.h  # 임계값 로직 헤더
-│   │   ├── 📄 ThresholdLogicController.cpp # 임계값 로직 구현
 │   │   ├── 📄 drvMultiFunction.cpp       # 다기능 드라이버
 │   │   ├── 📄 drvUSBCTR.cpp              # USB 카운터 드라이버
 │   │   ├── 📄 measCompDiscover.cpp       # 장치 검색 기능
 │   │   └── 📄 USBCTR_SNL.st              # State Notation Language
 │   ├── 📁 Db/                               # 🗄️ 데이터베이스 템플릿
 │   │   ├── 📄 USB1608G_2AO.substitutions    # 메인 치환 파일
-│   │   ├── 📄 thresholdController.template  # 컨트롤러 템플릿
-│   │   ├── 📄 thresholdLogic.template       # 로직 규칙 템플릿
+│   │   ├── 📄 threshold_Logic.template      # 로직 규칙 템플릿
 │   │   ├── 📄 measCompAnalogIn.template     # 아날로그 입력
 │   │   ├── 📄 measCompAnalogOut.template    # 아날로그 출력
 │   │   ├── 📄 measCompBinaryOut.template    # 디지털 출력
