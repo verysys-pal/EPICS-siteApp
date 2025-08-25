@@ -25,54 +25,54 @@ USB1608G_2AO/
 └── Makefile          # 최상위 빌드 파일
 ```
 
-## 애플리케이션 구조 (USB1608G_2AOApp/)
+### 애플리케이션 구조 (USB1608G_2AOApp/)
 ```
 USB1608G_2AOApp/
-├── src/                # C/C++ 소스 코드
-│   ├── Makefile       # 소스 빌드 설정
-│   ├── *Main.cpp      # IOC 메인 진입점
-│   ├── drv*.cpp       # 디바이스 드라이버
-│   ├── *.st           # State Notation Language 파일
-│   └── O.linux-x86_64/ # 아키텍처별 빌드 출력
-├── Db/                 # 데이터베이스 템플릿 및 치환 파일
-│   ├── *.template     # EPICS 레코드 템플릿
-│   ├── *.substitutions # 템플릿 인스턴스화 파일
-│   └── *_settings.req # autosave 설정 파일
-└── op/                 # 운영자 인터페이스 (MEDM 화면)
-    └── *.adl          # MEDM 디스플레이 파일
+├── src/                  # C/C++ 소스 코드
+│   ├── Makefile          # 소스 빌드 설정
+│   ├── *Main.cpp         # IOC 메인 진입점
+│   ├── drv*.cpp          # 디바이스 드라이버
+│   ├── *.st              # State Notation Language 파일
+│   └── O.linux-x86_64/   # 아키텍처별 빌드 출력
+├── Db/                   # 데이터베이스 템플릿 및 치환 파일
+│   ├── *.template        # EPICS 레코드 템플릿
+│   ├── *.substitutions   # 템플릿 인스턴스화 파일
+│   └── *_settings.req    # autosave 설정 파일
+└── op/                   # 운영자 인터페이스 (MEDM 화면)
+    └── *.adl             # MEDM 디스플레이 파일
 ```
 
-## IOC 부팅 구조 (iocBoot/)
+### IOC 부팅 구조 (iocBoot/)
 ```
 iocBoot/
-├── iocUSB1608G_2AO/   # 특정 IOC 인스턴스
-│   ├── st.cmd         # 시작 스크립트
-│   ├── envPaths       # 환경 경로 설정
+├── iocUSB1608G_2AO/      # 특정 IOC 인스턴스
+│   ├── st.cmd            # 시작 스크립트
+│   ├── envPaths          # 환경 경로 설정
 │   ├── auto_settings.req # autosave 요청 파일
-│   ├── autosave/      # 저장된 설정 파일들
-│   └── *.sh           # 유틸리티 스크립트
+│   ├── autosave/         # 저장된 설정 파일들
+│   └── *.sh              # 유틸리티 스크립트
 ```
 
-## 전체 프로젝트 구조 개요
+### 전체 프로젝트 구조 개요
 
 ```
-USB1608G_2AO/                          # 📁 프로젝트 루트 디렉토리
+USB1608G_2AO/                           # 📁 프로젝트 루트 디렉토리
 ├── 📁 configure/                       # ⚙️ 빌드 설정 (최우선 수정)
-│   ├── 📄 CONFIG                      # 기본 빌드 설정
-│   ├── 📄 RELEASE                     # 외부 라이브러리 경로 정의
-│   ├── 📄 CONFIG_SITE                 # 사이트별 컴파일 옵션
-│   └── 📄 RULES_TOP                   # 최상위 빌드 규칙
-├── 📁 USB1608G_2AOApp/                # 🎯 메인 애플리케이션
-│   ├── 📁 src/                        # 💻 C/C++ 소스 코드
-│   │   ├── 📄 Makefile               # 소스 빌드 설정
-│   │   ├── 📄 USB1608G_2AOMain.cpp   # IOC 메인 진입점
+│   ├── 📄 CONFIG                       # 기본 빌드 설정
+│   ├── 📄 RELEASE                      # 외부 라이브러리 경로 정의
+│   ├── 📄 CONFIG_SITE                  # 사이트별 컴파일 옵션
+│   └── 📄 RULES_TOP                    # 최상위 빌드 규칙
+├── 📁 USB1608G_2AOApp/                 # 🎯 메인 애플리케이션
+│   ├── 📁 src/                         # 💻 C/C++ 소스 코드
+│   │   ├── 📄 Makefile                 # 소스 빌드 설정
+│   │   ├── 📄 USB1608G_2AOMain.cpp     # IOC 메인 진입점
 │   │   ├── 📄 ThresholdLogicController.h  # 임계값 로직 헤더
 │   │   ├── 📄 ThresholdLogicController.cpp # 임계값 로직 구현
-│   │   ├── 📄 drvMultiFunction.cpp   # 다기능 드라이버
-│   │   ├── 📄 drvUSBCTR.cpp         # USB 카운터 드라이버
-│   │   ├── 📄 measCompDiscover.cpp   # 장치 검색 기능
-│   │   └── 📄 USBCTR_SNL.st         # State Notation Language
-│   ├── 📁 Db/                        # 🗄️ 데이터베이스 템플릿
+│   │   ├── 📄 drvMultiFunction.cpp       # 다기능 드라이버
+│   │   ├── 📄 drvUSBCTR.cpp              # USB 카운터 드라이버
+│   │   ├── 📄 measCompDiscover.cpp       # 장치 검색 기능
+│   │   └── 📄 USBCTR_SNL.st              # State Notation Language
+│   ├── 📁 Db/                               # 🗄️ 데이터베이스 템플릿
 │   │   ├── 📄 USB1608G_2AO.substitutions    # 메인 치환 파일
 │   │   ├── 📄 thresholdController.template  # 컨트롤러 템플릿
 │   │   ├── 📄 thresholdLogic.template       # 로직 규칙 템플릿
@@ -98,14 +98,14 @@ USB1608G_2AO/                          # 📁 프로젝트 루트 디렉토리
 └── 📄 README.md                     # 📖 프로젝트 설명서
 ```
 
-## 파일 명명 규칙
+### 파일 명명 규칙
 - **템플릿 파일**: `measComp*.template` - 기능별 EPICS 레코드 정의
 - **치환 파일**: `*.substitutions` - 템플릿 인스턴스화
 - **드라이버 파일**: `drv*.cpp` - 하드웨어 드라이버 구현
 - **DBD 파일**: `*.dbd` - 데이터베이스 정의
 - **설정 파일**: `*_settings.req` - autosave용 PV 목록
 
-## 빌드 출력 디렉토리
+### 빌드 출력 디렉토리
 - `O.Common/`: 아키텍처 독립적 파일
 - `O.linux-x86_64/`: Linux x86_64 아키텍처 특정 파일
 - 각 하위 디렉토리마다 해당 아키텍처의 빌드 출력 포함
@@ -124,6 +124,21 @@ USB1608G_2AO/                          # 📁 프로젝트 루트 디렉토리
 8. IOC 빌드 및 오류 체크  
 9. IOC 자동 실행  
 
+#### 의존성 계층 구조
+```
+Level 0: 외부 의존성 (EPICS Base, synApps)
+    ↓
+Level 1: 프로젝트 설정 (configure/)
+    ↓
+Level 2: 빌드 설정 (Makefile)
+    ↓
+Level 3: 소스 코드 (*.h, *.cpp)
+    ↓
+Level 4: 데이터베이스 (*.template, *.substitutions)
+    ↓
+Level 5: IOC 설정 (st.cmd, 설정 파일)
+```
+
 ---
 
 ## 📂 주요 자동 수정 파일
@@ -139,7 +154,7 @@ USB1608G_2AO/                          # 📁 프로젝트 루트 디렉토리
 
 ---
 
-## ✅ 필수 설정
+### ✅ 필수 설정
 
 ```bash
 EPICS_BASE = /usr/local/epics/EPICS_R7.0/base
@@ -200,6 +215,6 @@ chmod +x siteApp_USB1608G_2AO.sh
 
 ## ⚠️ 주의사항
 
-- measComp-R4-2 및 Git repo 경로가 사전에 존재해야 함  
-- 일부 파일(Main.cpp, user.db 등)은 비어 있으므로 수동 작성 필요  
-- EPICS_HOST_ARCH=linux-x86_64 기준  
+- measComp-R4-2 및 Git repo의 경로는 사전에 존재해야 하며, 필요한 파일이 없을 경우 복사 오류 발생 가능
+- user.db, user.proto, user.substitutions, Main.cpp 등은 생성만 하고 내용은 비워둠
+- EPICS_HOST_ARCH=linux-x86_64 기준으로 작성됨  
