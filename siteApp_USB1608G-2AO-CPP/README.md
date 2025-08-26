@@ -7,14 +7,15 @@
 
 ### .kiro/steering
 1. [한국어 규칙](./.kiro/steering/korean-language.md)
+
 #### Key Features
-- Multi-function USB DAQ device support (USB1608G-2AO)
-- Analog input/output channels
-- Digital I/O capabilities  
-- Counter/timer functionality
-- Waveform generation and digitization
-- Temperature measurement support
-- EPICS Channel Access integration
+  - Multi-function USB DAQ device support (USB1608G-2AO)
+  - Analog input/output channels
+  - Digital I/O capabilities  
+  - Counter/timer functionality
+  - Waveform generation and digitization
+  - Temperature measurement support
+  - EPICS Channel Access integration
 
 2. [Product Overview](./.kiro/steering/product.md)
 3. [Project Structure](./.kiro/steering/structure.md)
