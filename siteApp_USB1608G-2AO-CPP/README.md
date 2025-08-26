@@ -64,21 +64,21 @@
     - 배포 및 설치
 
 3. [tasks](./.kiro/specs/epics-ioc-development-guide/tasks.md)
-    1. ThresholdLogicController 헤더 파일 생성
-    2. ThresholdLogicController 기본 구현
-    3. 임계값 로직 알고리즘 구현
-    4. 실시간 모니터링 스레드 구현
-    5. asyn 매개변수 읽기/쓰기 메서드 구현
-    6. IOC 쉘 명령어 등록 구현
-    7. 오류 처리 및 로깅 시스템 구현
-    8. ThresholdLogic 데이터베이스 템플릿 생성
-    9. IOC 시작 스크립트 통합
-    10. 설정 저장 및 복원 기능 구현
-    11. 데이터베이스 치환 파일 생성
-    12. 빌드 시스템 통합
-    13. 단위 테스트 작성
-    14. 통합 테스트 및 검증
-    15. 문서화 및 사용 가이드 작성
+    - ThresholdLogicController 헤더 파일 생성
+    - ThresholdLogicController 기본 구현
+    - 임계값 로직 알고리즘 구현
+    - 실시간 모니터링 스레드 구현
+    - asyn 매개변수 읽기/쓰기 메서드 구현
+    - IOC 쉘 명령어 등록 구현
+    - 오류 처리 및 로깅 시스템 구현
+    - ThresholdLogic 데이터베이스 템플릿 생성
+    - IOC 시작 스크립트 통합
+    -  설정 저장 및 복원 기능 구현
+    -  데이터베이스 치환 파일 생성
+    -  빌드 시스템 통합
+    -  단위 테스트 작성
+    -  통합 테스트 및 검증
+    -  문서화 및 사용 가이드 작성
 
 
 <br/>  
