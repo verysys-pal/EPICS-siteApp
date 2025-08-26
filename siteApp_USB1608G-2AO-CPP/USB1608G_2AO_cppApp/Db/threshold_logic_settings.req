@@ -1,0 +1,13 @@
+# threshold_logic_settings.req
+# Autosave request file for ThresholdLogic template
+# 이 파일은 IOC 재시작 시 임계값 로직 설정을 자동으로 복원합니다.
+
+# 임계값 설정
+$(P)$(R)Threshold
+$(P)$(R)Hysteresis
+
+# 활성화 상태
+$(P)$(R)Enable
+
+# 업데이트 주기
+$(P)$(R)UpdateRate

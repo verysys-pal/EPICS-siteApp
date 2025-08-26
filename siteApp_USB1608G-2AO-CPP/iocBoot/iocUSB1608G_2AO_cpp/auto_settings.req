@@ -1,0 +1,2 @@
+    file "/usr/local/epics/EPICS_R7.0/siteApp/USB1608G_2AO_cpp/USB1608G_2AO_cppApp/Db/USB1608G_2AO_settings.req", P=$(P)
+    file "/usr/local/epics/EPICS_R7.0/siteApp/USB1608G_2AO_cpp/USB1608G_2AO_cppApp/Db/threshold_logic_settings.req", P=$(P)

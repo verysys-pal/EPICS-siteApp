@@ -1,0 +1,9 @@
+# simpleTestSupport.dbd
+#
+# 간단한 테스트를 위한 데이터베이스 정의
+#
+# Author: EPICS IOC Development Guide
+# Date: 2025
+
+# 간단한 테스트 등록 함수
+registrar(SimpleTestRegister)
