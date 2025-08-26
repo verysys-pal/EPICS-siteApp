@@ -2,6 +2,14 @@
 
 이 디렉토리는 ThresholdLogicController의 포괄적인 문서를 포함합니다.
 
+
+## kiro 스팩문서
+
+- 1. [한극어 규칙](../.kiro/steering/korean-language.md)
+- 1. [Product Overview](../.kiro/steering/product.md)
+
+
+
 ## 문서 목록
 
 ### 1. [사용자 매뉴얼](ThresholdLogicController_User_Manual.md)
