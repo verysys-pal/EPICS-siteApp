@@ -6,25 +6,84 @@
 ## kiro 스팩문서
 
 ### .kiro/steering
+---
 1. [한국어 규칙](./.kiro/steering/korean-language.md)
 
-#### Key Features
-  - Multi-function USB DAQ device support (USB1608G-2AO)
-  - Analog input/output channels
-  - Digital I/O capabilities  
-  - Counter/timer functionality
-  - Waveform generation and digitization
-  - Temperature measurement support
-  - EPICS Channel Access integration
-
 2. [Product Overview](./.kiro/steering/product.md)
+    - **Key Features**
+      - Multi-function USB DAQ device support (USB1608G-2AO)
+      - Analog input/output channels
+      - Digital I/O capabilities  
+      - Counter/timer functionality
+      - Waveform generation and digitization
+      - Temperature measurement support
+      - EPICS Channel Access integration
+
 3. [Project Structure](./.kiro/steering/structure.md)
-4. [Technology Stack](./.kiro/steering/tech.md)
+      ```
+      ├── configure/          # Build configuration and dependencies
+      ├── USB1608G_2AO_cppApp/ # Main application directory
+      ├── db/                 # Database templates (top-level copies)
+      ├── dbd/                # Database definitions
+      ├── iocBoot/            # IOC boot configurations
+      ├── bin/                # Compiled executables
+      └── lib/                # Compiled libraries
+      ```
+
+4. [Technology Stack](./.kiro/steering/tech.md)    
+    - **EPICS Base**: `/usr/local/epics/EPICS_R7.0/base`
+    - **synApps Support Modules**:
+      - asyn-R4-44-2 (Asynchronous driver support)
+      - calc-R3-7-5 (Calculation records)
+      - scaler-4-1 (Scaler support)
+      - mca-R7-10 (Multi-channel analyzer)
+      - busy-R1-7-4 (Busy record)
+      - sscan-R2-11-6 (Scanning support)
+      - autosave-R5-11 (Settings persistence)
+      - sequencer-mirror-R2-2-9 (State notation language)
+      - measComp-R4-2 (Measurement Computing driver support)
+
+### .kiro/specs
+---
+1. [Requirements](./.kiro/specs/epics-ioc-development-guide/requirements.md)
+    - 요구사항 1: 프로젝트 구조 가이드
+    - 요구사항 2: 파일 의존성 관계 문서화
+    - 요구사항 3: 개발 명세서 작성
+    - 요구사항 4: 자동 임계값 로직 제어 구현 가이드
+    - 요구사항 5: 빌드 시스템 최적화 가이드
+    - 요구사항 6: 데이터베이스 템플릿 설계 가이드
+    - 요구사항 7: 파일변경 범위
+    - 요구사항 8: MEDM 생성 및 시험용 스크립트 작성
+
+2. [Design](./.kiro/specs/epics-ioc-development-guide/design.md)
+    - 전체 시스템 아키텍처
+    - 구성 요소 및 인터페이스
+    - 데이터 모델
+    - 오류 처리
+    - 테스트 전략
+    - 배포 및 설치
+
+3. [tasks](./.kiro/specs/epics-ioc-development-guide/tasks.md)
+    1. ThresholdLogicController 헤더 파일 생성
+    2. ThresholdLogicController 기본 구현
+    3. 임계값 로직 알고리즘 구현
+    4. 실시간 모니터링 스레드 구현
+    5. asyn 매개변수 읽기/쓰기 메서드 구현
+    6. IOC 쉘 명령어 등록 구현
+    7. 오류 처리 및 로깅 시스템 구현
+    8. ThresholdLogic 데이터베이스 템플릿 생성
+    9. IOC 시작 스크립트 통합
+    10. 설정 저장 및 복원 기능 구현
+    11. 데이터베이스 치환 파일 생성
+    12. 빌드 시스템 통합
+    13. 단위 테스트 작성
+    14. 통합 테스트 및 검증
+    15. 문서화 및 사용 가이드 작성
 
 
-
-
-
+<br/>  
+<br/>  
+<br/>  
 
 ## 문서 목록
 
