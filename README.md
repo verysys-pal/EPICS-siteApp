@@ -75,3 +75,6 @@ SYNAPPS_VERSION="synApps_6_3"
     Yokogawa_DAS-R2-0-2/      16M
     Total Directories Size:   1.9GiB
 ```
+
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/verysys-pal/EPICS-siteApp)
