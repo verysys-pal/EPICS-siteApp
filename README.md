@@ -77,4 +77,5 @@ SYNAPPS_VERSION="synApps_6_3"
 ```
 
 
+## 📦 DeepWiKi
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/verysys-pal/EPICS-siteApp)
