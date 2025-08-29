@@ -77,5 +77,31 @@ SYNAPPS_VERSION="synApps_6_3"
 ```
 
 
+### 3. USB1608G-2AO MEDM Script Usage
+
+Set the `EPICS_PATH` environment variable to the root of your EPICS installation before running the script:
+
+```bash
+export EPICS_PATH=/usr/local/epics/EPICS_R7.0
+```
+
+Launch the MEDM interface using:
+
+```bash
+./siteApp_USB1608G-2AO/medm_USB1608G_2AO.sh
+```
+
+Menu selections:
+
+| Input | Action |
+|-------|-------|
+| `1`   | Open USB1608G_2AO display (execute) |
+| `2`   | Open USB1608G_2AO display (edit) |
+| `3`   | Open measCompDigitalIO8 display (execute) |
+| `4`   | Open measCompDigitalIO8 display (edit) |
+| `0`   | Exit script |
+
+Logs are written to `/root/log/medm_USB1608G_2AO.log`.
+
 ## 📦 DeepWiKi
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/verysys-pal/EPICS-siteApp)
